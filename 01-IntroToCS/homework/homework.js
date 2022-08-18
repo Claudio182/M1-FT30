@@ -26,8 +26,17 @@ function BinarioADecimal(num) {
 function DecimalABinario(num) {
     // tu codigo aca
     // se espera un numero, retorna un string
+
+    let result = ''
+
+    while (num > 0){
+        result = num%2 + result
+        num = Math.floor(num/2)
+    }
+
+    return result
     
-    let arrBin = []
+    /*{ let arrBin = []
 
     for (; num > 1;) {
         arrBin.unshift(num % 2)
@@ -37,10 +46,7 @@ function DecimalABinario(num) {
     arrBin.unshift(num)
     arrBin = arrBin.join('')
 
-    return arrBin
-
-
-
+    return arrBin }*/
 
 }
 
