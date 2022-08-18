@@ -1,9 +1,5 @@
 "use strict";
 
-// function BinarioADecimal(num) {
-//   // tu codigo aca
-
-// }
 
 // En Binario a decimal recibimos un string y retornamos un número
 function BinarioADecimal(string) {
@@ -12,16 +8,19 @@ function BinarioADecimal(string) {
   var result = 0;
   var count = string.length - 1
   for (let i = 0; i < string.length; i++) {
+    console.log(string[i])
     result = result + string[i] * Math.pow(2, count);
     // var lugarPotencia =string.length - 1 
     // console.log("count is: ", count)
     count--
+    console.log(result)
   }
-  // console.log("result is: ", result)
+  //console.log("result is: ", result)
   return result;
   //
 }
-BinarioADecimal("10001010")
+console.log(BinarioADecimal('1001'))
+
 // BinarioADecimal()
 // function sumar (a,b){
 //   var result = a+b
