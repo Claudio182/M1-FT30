@@ -44,16 +44,24 @@ function Queue() {
 
 Queue.prototype.enqueue = function(value) {this.cola.unshift(value)}
 Queue.prototype.dequeue = function(value) {
-    if (this.cola.lengt === 0) {return undefined}
-    return this.cola.pop(value)
+    this.cola.lengt === 0? undefined: this.cola.pop(value)
 }
 Queue.prototype.size = function() {return this.cola.length}
 // No modifiquen nada debajo de esta linea
 // --------------------------------
-/* const cola1 = new Queue()
+const cola1 = new Queue()
 cola1.enqueue(10)
-cola
-console.log() */
+cola1.enqueue(20)
+console.log(cola1)
+cola1.dequeue()
+console.log(cola1)
+
+
+
+
+
+
+
 module.exports = {
     Queue,
     nFactorial,
