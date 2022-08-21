@@ -44,7 +44,7 @@ function Queue() {
 
 Queue.prototype.enqueue = function(value) {this.cola.unshift(value)}
 Queue.prototype.dequeue = function(value) {
-    this.cola.lengt === 0? undefined: this.cola.pop(value)
+    return this.cola.lengt === 0? undefined: this.cola.pop(value)
 }
 Queue.prototype.size = function() {return this.cola.length}
 // No modifiquen nada debajo de esta linea
