@@ -15,9 +15,10 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 */
 
 function nFactorial(n) {
-    if (n === 1) {
-        return 1;
-    }
+    if (n < 0) return NaN
+    if (n === 0) return 1
+    if (n === 1) return 1
+    
     return n * nFactorial(n - 1);
 }
 
@@ -26,7 +27,7 @@ function nFibonacci(n) {
     if (n === 1) {return 1} 
     return nFibonacci(n-1) + nFibonacci(n-2)
 }
-console.log(nFibonacci(6))
+
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el primero que se quita. Definir los siguientes métodos:
@@ -43,9 +44,11 @@ function Queue() {
 }
 
 Queue.prototype.enqueue = function(value) {this.cola.unshift(value)}
+
 Queue.prototype.dequeue = function(value) {
     return this.cola.lengt === 0? undefined: this.cola.pop(value)
 }
+
 Queue.prototype.size = function() {return this.cola.length}
 // No modifiquen nada debajo de esta linea
 // --------------------------------

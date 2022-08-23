@@ -11,6 +11,9 @@ describe('nFactorial(n)', function() {
   it('debe devolver el factorial de n', function() {
     expect(nFactorial(5)).toBe(120);
     expect(nFactorial(15)).toBe(1307674368000);
+    expect(nFactorial(0)).toBe(1);
+    expect(nFactorial(-8)).toBe(NaN);
+    expect(nFactorial(1)).toBe(1);
   });
 });
 
