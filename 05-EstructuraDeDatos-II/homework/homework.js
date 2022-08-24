@@ -1,5 +1,7 @@
 "use strict";
 
+const { isString } = require("markdown-it/lib/common/utils");
+
 /*
 Implementar la clase LinkedList, definiendo los siguientes métodos:
     - add: agrega un nuevo nodo al final de la lista;
@@ -60,8 +62,7 @@ LinkedList.prototype.remove = function() {
             pointer = pointer.next
         }
         temp = pointer.data
-        console.log(temp)
-        prePointer = null
+        prePointer.next = null
         this._length--
         return temp
     }
@@ -86,10 +87,16 @@ LinkedList.prototype.search = function(value) {
         return null
     }
 }
-const lista1 = new LinkedList()
 
-/* lista1.add('holi')
-console.log(lista1) */
+/* const lista1 = new LinkedList()
+lista1.add('first');
+lista1.add('second');
+console.log(lista1)
+lista1.remove()
+console.log(lista1)
+ */
+
+
 /* 
 lista1.add('two');
 lista1.add('three');
@@ -119,7 +126,50 @@ La clase debe tener los siguientes métodos:
 Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero puedo chequear, con hasKey, si ya hay algo en la tabla con el nombre 'instructora'; luego, invocando set('instructora', 'Ani'), se almacenará el par clave-valor en un bucket específico (determinado al hashear la clave)
 */
 
-function HashTable() { }
+function HashTable() {
+    this.data = new Object()
+    this._length = 0
+    this.numBuckets = 35
+}
+
+HashTable.prototype.hash = function(key) {
+    let hash
+    for(let i = 0; i < key.length; i++) {
+        hash = hash + key.charCodeAt(i)
+    }
+    return hash % this.numBuckets
+}
+
+HashTable.prototype.set = function(key, value) {
+    let hash = this.hash(key)
+    if (typeof key !== 'string') throw new TypeError('Key must be string')
+    
+    if (!this.data[hash]){
+        this.data[hash] = []
+    }
+    this.data[hash].push({key: value}) 
+    this._length++
+}
+
+HashTable.prototype.get = function(key) {
+    let hash = this.hash(key)
+    return this.data[hash]
+}
+
+HashTable.prototype.hasKey = function(key) {
+    let hash = this.hash(key)
+    if (this.data.hasOwnProperty(parseInt(hash))){ 
+        return true
+    }else{
+        return false
+    } 
+}
+
+let tabla = new HashTable()
+tabla.set('holi', 3)
+tabla.set('adios', 9)
+console.log(tabla)
+console.log(tabla.length)
 
 // No modifiquen nada debajo de esta linea
 // --------------------------------

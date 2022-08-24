@@ -35,7 +35,7 @@ describe('Una linked list', function() {
 
   it('La clase Node deberia tomar un valor como argumento y definir next como null por default', function() {
     var node = new Node('test');
-    expect(node.value).toBe('test');
+    expect(node.data).toBe('test');
     expect(node.next).toBe(null);
   });
 
@@ -47,8 +47,8 @@ describe('Una linked list', function() {
   it('add agrega los elementos linkeandolos entre ellos a traves del next', function() {
     linkedList.add('first');
     linkedList.add('second');
-    expect(linkedList.head.value).toBe('first');
-    expect(linkedList.head.next.value).toBe('second');
+    expect(linkedList.head.data).toBe('first');
+    expect(linkedList.head.next.data).toBe('second');
     expect(linkedList.head.next.next).toBe(null);
   });
 
