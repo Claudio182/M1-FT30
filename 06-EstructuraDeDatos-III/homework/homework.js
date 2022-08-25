@@ -32,49 +32,81 @@ BinarySearchTree.prototype.size = function () {
     }
 }
 
-BinarySearchTree.prototype.insert = function (value) {
-    let node = new BinarySearchTree(value)
-    if (value > this.data) {
-        if (!this.right) {
-            this.right = node
-        }else{
-            this.right.insert(value)
-        }
-    }else{
+BinarySearchTree.prototype.insert = function(value) {
+    
+    if (value < this.data) {
         if (!this.left) {
-            this.left = node
+            this.left = new BinarySearchTree(value)
         }else{
             this.left.insert(value)
+        }
+    }else{
+        if (!this.right) {
+            this.right = new BinarySearchTree(value)
+        }else{
+            this.right.insert(value)
         }
     }
 }
 
 BinarySearchTree.prototype.contains = function(value) {
-    let pointer = this
-    let bool = false
-    if (value === pointer.data) {
+
+    if (value === this.data) {
         return true
+
     }else{
-        if (value < pointer.data) {
-            if (pointer.left){
-                pointer = this.left
-                return pointer.contains(value)
-            }else{
+
+        if (value < this.data) {
+            if (!this.left){
                 return false
+            }else{
+                return this.contains(value)
             }
         }else{
-            if (pointer.right) {
-                pointer = this.right
-                return pointer.contains(value)
-            }else{
+            if (!this.right) {
                 return false
+            }else{
+                return this.contains(value)
             }
             
         }
+
     }
 }
 
-BinarySearchTree.prototype.depthFirstForEach = function(order = 'in-order'){}
+BinarySearchTree.prototype.depthFirstForEach = function(CallBack, order ='in-order'){
+    if (order === 'pre-order') {
+
+        CallBack()
+        
+        if (this.left) {
+            this.left.depthFirstForEach(CallBack, order)
+        }
+        else if (this.right) {
+            this.right.depthFirstForEach(CallBack, order)
+        }
+    }
+    if (order === 'post-order') {
+        if (this.left) {
+            this.left.depthFirstForEach(CallBack, order)
+        }
+        if (this. right){
+            this.right.depthFirstForEach(CallBack, order)
+        }
+
+        CallBack()
+    }
+    if (order === 'in-order') {
+        if (this.left) {
+            this.left.depthFirstForEach(CallBack, order)
+        }
+        CallBack()
+
+        if (this.right) {
+            this.right.depthFirstForEach(CallBack, order)
+        }
+    }
+}
 
 BinarySearchTree.prototype.breadthFirstForEach = function() {}
 
