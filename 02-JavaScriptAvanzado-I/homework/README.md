@@ -7,7 +7,7 @@ Determiná que será impreso en la consola, sin ejecutar el código.
 
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
 //En el caso de asignar directamente un valor a una variable se va a producir una reasignación de las primeras
-// En el caso se declarar sin el prefijo var, la variable se almacena como propiedad del objeto, por lo que la hace modificable y eliminable.
+// En el caso de declarar sin el prefijo var, la variable se almacena como propiedad del objeto, por lo que la hace modificable y eliminable.
 
 ```javascript
 x = 1;
@@ -33,7 +33,7 @@ console.log(x); // 1
 
 ```javascript
 console.log(bar); // undefined
-console.log(baz); // is not defined ????
+console.log(baz); // Error: baz no esta definido, se detiene la ejecucion del programa
 foo(); // // No lega por que salta error antes
 function foo() { console.log('Hola!'); }
 var bar = 1;
@@ -60,7 +60,7 @@ console.log(instructor); // 'Tony'
 })();
 console.log(instructor); // 'Tony'
 //Una IEFS se crea, ejecuta y cierra de una vez.
-// el codigo envuelto en () es considerado por JS como expresion (con un contexto)
+// el codigo envuelto en () es considerado por JS como expresion (con un contexto local propio)
 ```
 
 ```javascript
@@ -74,7 +74,7 @@ if (true) {
 }
 console.log(instructor); // 'The Flash'
 console.log(pm); // 'Franco'
-// let tiene un scope mas limitado que var. Let limita su scope a cada nueblo bloque ({}), mientras que var solo en un nuevo contexto de ejecucion.
+// let tiene un scope mas limitado que var. Let limita su scope a cada nuevo bloque ({}) esto inluye ciclos y bucles, mientras que var solo en un nuevo contexto de ejecucion de funcion.
 ```
 ### Coerción de Datos
 
@@ -135,7 +135,8 @@ function getFood(food) {
     }
     return snack; // undefined
 }
-// Undefined ya que la var snack, dentro del contexto de ejecución de la función getFood(), escala por hoisting y es almacenado su nombre y espaci en memoria, ero no declarada.
+// Undefined ya que la var (cuyo scope no discrimina por bloque) snack, dentro del contexto de ejecución de la función getFood(), escala por hoisting y es almacenado su nombre y espacio en memoria, pero no declarada.
+// como el argumento pasado a getFood es false, la asignacion de 'Friskies' no sucede por que el hilo de ejecucion no entra al bloque if
 getFood(false);
 ```
 
@@ -162,7 +163,8 @@ var test = obj.prop.getFullname;
 
 console.log(test());                 // 'Juan Perez'
 // "Aurgelio De Rosa" ya que la funcion al ser ejecutada en el contexto del objeto prop, this alude a este objeto donde encuentra la propiedad fullName.
-// "Juan Perez" ya que la funcion getFullName() es asignada a la variable test en el entorno global, por lo que this pasa a referenciar a este y toma como variable fullName de su mismo entorno.```
+// "Juan Perez" ya que la funcion getFullName() es asignada a la variable test en el entorno global, por lo que this pasa a referenciar a este y toma como variable fullName de su mismo entorno.
+```
 
 ### Event loop
 
