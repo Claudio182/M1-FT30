@@ -19,11 +19,12 @@ function counter() {
     otroContador()      // 2
     otroContador()      // 3
     */}
-    var contador = 0
+    let contador = 0
     return function () {
         return ++contador
     }
 }
+
 
 function cacheFunction(cb) {
     {/*
@@ -31,7 +32,6 @@ function cacheFunction(cb) {
     Tu tarea aquí es lograr, mediante un closure, que cacheFunction actúe como una memoria caché para el callback que recibe por parámetro (cb); es decir, que "recuerde" el resultado de cada operación que hace, de manera que, al realizar una operación por segunda vez, se pueda obtener el resultado de esa "memoria" sin tener que efectuar otra vez cálculos que ya se hicieron anteriormente.
 
     cacheFunction debe retornar una función. Esta función debe aceptar un argumento (arg) e invocar a cb con ese argumento; hecho eso, debe guardar el argumento junto con el resultado de la invocación (tip: usá un objeto donde cada propiedad sea el argumento, y su valor el resultado de la correspondiente invocación a cb) de manera que, la próxima vez que reciba el mismo argumento, no sea necesario volver a invocar a cb, porque el resultado estará guardado en la "memoria caché".
-  
   
     Ejemplo:
     function square(n){
@@ -47,10 +47,10 @@ function cacheFunction(cb) {
 
     let cache = {}
 
-    return function(value) {
-        if (cache.hasOwnProperty(value)){
+    return function (value) {
+        if (cache.hasOwnProperty(value)) {
             return cache[value]
-        }else {
+        } else {
             cache[value] = cb(value)
             return cache[value]
         }
@@ -82,7 +82,7 @@ function getNombre() {
 */
 
 let getNombreInstructor = getNombre.bind(instructor)
-let getNombreAlumno =getNombre.bind(alumno)
+let getNombreAlumno = getNombre.bind(alumno)
 
 /*
   Ejercicio 4
@@ -94,7 +94,7 @@ function crearCadena(delimitadorIzquierda, delimitadorDerecha, cadena) {
     return delimitadorIzquierda + cadena + delimitadorDerecha;
 }
 
-let textoAsteriscos = crearCadena.bind(null,'*', '*')
+let textoAsteriscos = crearCadena.bind(null, '*', '*')
 let textoGuiones = crearCadena.bind(null, '-', '-')
 let textoUnderscore = crearCadena.bind(null, '_', '_')
 
