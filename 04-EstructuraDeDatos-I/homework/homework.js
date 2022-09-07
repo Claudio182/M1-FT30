@@ -40,16 +40,22 @@ Pueden utilizar class o función constructora.
 
 function Queue() {
     this.cola = []
-    
 }
 
-Queue.prototype.enqueue = function(value) {this.cola.unshift(value)}
-
-Queue.prototype.dequeue = function(value) {
-    return this.cola.lengt === 0? undefined: this.cola.pop(value)
+Queue.prototype.enqueue = function (value) {
+    this.cola.unshift(value)
+}
+  
+Queue.prototype.dequeue = function () {
+    if (this.cola.length === 0){
+        return undefined
+    }
+    return this.cola.pop()
 }
 
-Queue.prototype.size = function() {return this.cola.length}
+Queue.prototype.size = function () {
+    return this.cola.length
+}
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 const cola1 = new Queue()
