@@ -88,29 +88,90 @@ LinkedList.prototype.search = function(value) {
     }
 }
 
-/* const lista1 = new LinkedList()
-lista1.add('first');
-lista1.add('second');
-console.log(lista1)
-lista1.remove()
-console.log(lista1)
- */
+/* function LinkedList() {
+    this.head = null
+    this.tail = null
+    this.size = 0
+}
+
+function Node(value) {
+    this.data = value
+    this.next = null
+} */
+
+/* LinkedList.prototype.add = function (value, tail = false) {
+    // Si la lista se ncuentra vacia: crear instancia de nodo,
+    // asignar referenia a head, aumentar length, devolver nodo
+    if (!this.head) {
+        this.head = new Node(value)
+        this.tail = this.head
+        this.size++
+        return this.head
+    }
+    // Usando tail como registro de ultimo nodo
+    else if (tail){
+        this.tail.next = new Node(value)
+        this.tail = this.tail.next
+        this.size++
+        return tail.next
+    }
+    // Busqueda ultimo nodo de forma iterativa
+    let current = this.head
+    while (current.next) {
+        current = current.next
+    }
+    current.next = new Node(value)
+    this.tail = current.next
+    this.size++
+    return current.next
+} */
+
+/* LinkedList.prototype.remove = function () {
+    // Caso donde la lista se enuentre vacia
+    if (!this.head) {return 'Lista vacia'} 
+    // Caso donde solo existe un nodo en la lista
+    if (this.size === 1) {
+        let nodo = this.head
+        this.head = null
+        this.tail = null
+        this.size--
+        return nodo
+    }
+    // Caso iterativo
+    let current = this.head
+    let preCurrent
+    while (current.next) {
+        preCurrent = current
+        current = current.next
+    }
+    this.tail = preCurrent
+    preCurrent.next = null
+    this.size--
+    return current
+} */
+
+/* LinkedList.prototype.search = function (arg) {
+    // Cado lista vacia
+    if (!this.head) return 'Lista vacia'
+    // Caso cb
+    let current = this.head
+    if (typeof arg === 'function') {
+        while (current) {
+            arg(current)? current.data: current = current.next
+        }
+        return null
+    }
+    // Caso busqueda por valor
+    while(current) {
+        if (current.data === arg) {
+            return current.data
+        }
+        current = current.next
+    }
+    return null
+} */
 
 
-/* 
-lista1.add('two');
-lista1.add('three');
-lista1.add('one');
-lista1.add('four');
-
-console.log(lista1.search( x => x.length === 5? true: false )) */
-/*lista1.add('Claudio')
-lista1.add('Veronica')
-lista1.add('Sebastian')
-
-lista1.remove()
-
-console.log(lista1) */
 /*
 Implementar la clase HashTable.
 
