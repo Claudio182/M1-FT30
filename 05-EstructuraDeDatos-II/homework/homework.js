@@ -172,6 +172,131 @@ function Node(value) {
 } */
 
 
+//Confecionar una estrutura de datos stack mediante LnkedList
+
+function Stack () {
+    this.head = null
+    this.size = 0
+}
+
+function Node (value) {
+    this.data = value
+    this.next = null
+}
+
+Stack.prototype.add = function (value) {
+    // si el stak se encuentra vacio
+    if (!this.head){
+        this.head = new Node(value)
+        this.size++
+        return this.head
+    }
+    let prevStack = this.head
+    this.head = new Node(value)
+    this.head.next = prevStack
+    this.size++
+}
+
+Stack.prototype.remove = function () {
+    //caso que stack se enuente vacio
+    if (!this.head){
+        return 'Stack vacio'
+    }
+    if (!this.head.next){
+        let nodo = this.head
+        this.head = null
+        this.size--
+        return nodo
+    }
+    let chainNode = this.head.next
+    this.head.next = null
+    let nodeOut = this.head
+    this.head = chainNode
+    this.size--
+    return nodeOut
+}
+
+Stack.prototype.search = function (value) {
+    if (!this.head){
+        return 'Stack esta vacio'
+    }
+    let current = this.head
+    while (current){
+        if (current.data === value){
+            return current.data
+        }
+        current = current.next
+    }
+    return 'No existe'
+}
+
+// Confecionar una estructura de datos Queue mediante linked list
+
+class Queue {
+    constructor(){
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+
+    add(value){
+        if (!this.head){
+            this.head = new Nodo(value)
+            this.tail = this.head
+            this.size++
+            return this.head
+        }
+        let current = this.head
+        while (current.next){
+            current = current.next
+        }
+        let nodo = new Nodo(value)
+        current.next = nodo
+        this.tail = nodo
+        this.size++
+        return nodo
+    }
+
+    remove(){
+        if (!this.head){
+            return 'Queue vacia'
+        }
+        if (this.size === 1){
+            let nodo = this.head
+            this.head = null
+            this.tail = null
+            this.size--
+            return nodo
+        }
+        let comming = this.head.next
+        this.head.next = null
+        let firstQueue = this.head
+        this.head = comming
+        this.size--
+        return firstQueue
+    }
+
+    search(value){
+        if (!this.head){
+            return 'Queue vacia'
+        }
+        let current = this.head
+        while (current){
+            if (current.data === value){
+                return current.data
+            }
+            current = current.next
+        }
+        return 'Valor no encontrado en la Queue'
+    }
+}
+class Nodo {
+    constructor(value = null){
+        this.data = value
+        this.next = null
+    }
+}
+
 /*
 Implementar la clase HashTable.
 
