@@ -357,6 +357,53 @@ tabla.set('adios', 9)
 console.log(tabla)
 console.log(tabla.length)
 
+function HashTable() {
+    this.data = new Array(this.numBuckets)
+    this.length = 0
+    this.numBuckets = 35
+}
+
+HashTable.prototype.hash = function (key) {
+    let hash = 0
+    for (let i = 0; i < key.length; i++){
+        hash = hash + (key.charCodeAt(i) * i)
+    }
+    return hash % this.numBuckets
+}
+
+HashTable.prototype.set = function (key, value) {
+    let hash = this.hash(key)
+    if (typeof key !== 'string'){
+        throw new TypeError ('Keys must be strings')
+    }
+    if (!this.data[hash]){
+        this.data[hash] = {}
+    }
+    
+    this.data[hash][key] = {key, value}
+    this.length++
+}
+
+HashTable.prototype.get = function (key){
+    let hash = this.hash(key)
+    if (!this.data[hash][key]){
+        return 'La clave no se enuentra almacenada'
+    }
+    return this.data[hash][key].value
+}
+
+HashTable.prototype.hasKey = function (key){
+    let hash = this.hash(key)
+    return this.data[hash] ? true : false
+}
+
+const tabla1 = new HashTable()
+tabla1.set('color', 'amarillo')
+tabla1.set('tamano', '17')
+console.log(tabla1)
+console.log(tabla1.get('tamano'))
+console.log(tabla1.hasKey('color'))
+
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 
