@@ -6,7 +6,7 @@
 Determiná que será impreso en la consola, sin ejecutar el código.
 
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
-//En el caso de asignar directamente un valor a una variable se va a producir una reasignación de las primeras
+//En el caso de asignar directamente un valor a una variable se va a producir una reasignación de las primeras. en el caso de no haber sido declarada se va asociar la clave/valor al objeto this
 // En el caso de declarar sin el prefijo var, la variable se almacena como propiedad del objeto, por lo que la hace modificable y eliminable.
 
 ```javascript
@@ -34,7 +34,7 @@ console.log(x); // 1
 ```javascript
 console.log(bar); // undefined
 console.log(baz); // Error: baz no esta definido, se detiene la ejecucion del programa
-foo(); // // No lega por que salta error antes
+foo(); // // No lega por que salta error antes (Hola!)
 function foo() { console.log('Hola!'); }
 var bar = 1;
 baz = 2;  // no se eleva por hoisting ya que no se declara con var
@@ -46,7 +46,7 @@ if(true) {
     var instructor = "Franco";
 }
 console.log(instructor); // 'Franco'
-// la particularidad de var es que se puede redeclarar sin dar error, instructor dentro de if redeclara la variabe global.
+// la particularidad de var es que se puede redeclarar sin dar error, instructor dentro de if redeclara la variabe global, ya que el alance (Scope) de var puede ser global o local dentro de funciones.
 ```
 
 ```javascript
@@ -60,7 +60,7 @@ console.log(instructor); // 'Tony'
 })();
 console.log(instructor); // 'Tony'
 //Una IEFS se crea, ejecuta y cierra de una vez.
-// el codigo envuelto en () es considerado por JS como expresion (con un contexto local propio)
+// el codigo envuelto en () es considerado por JS como expresion (con un contexto local propio, o contexto de funcion)
 ```
 
 ```javascript
@@ -74,7 +74,7 @@ if (true) {
 }
 console.log(instructor); // 'The Flash'
 console.log(pm); // 'Franco'
-// let tiene un scope mas limitado que var. Let limita su scope a cada nuevo bloque ({}) esto inluye ciclos y bucles, mientras que var solo en un nuevo contexto de ejecucion de funcion.
+// let tiene un scope mas limitado que var. Let limita su scope a cada nuevo bloque ({}) esto inluye condicionales y ciclos, mientras que var solo en un nuevo contexto de ejecucion de funcion.
 ```
 ### Coerción de Datos
 
@@ -92,12 +92,12 @@ console.log(pm); // 'Franco'
 
 parseInt("09")// 9
 5 && 2  // 2  // devuelve el ultimo valor
-2 && 5  // 2
-5 || 0  // true
+2 && 5  // 5
+5 || 0  // true devuelve el primero que sea true de izq a der
 0 || 5  // true
 [3]+[3]-[10]  // [3,3] - [10]
 3>2>1    // true > 1  false
-[] == ![] // 
+[] == ![] // True
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
