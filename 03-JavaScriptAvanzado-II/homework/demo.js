@@ -1,18 +1,18 @@
-// // Clousures
-// // Una clousure es una funcion que tiene acceso a variables de su contexto
-// // donde se definio. 
-// // Para que exista una clousure se deben cumplir tres condiciones:
-// // 1. La funcion debe estar dentro de una funcion (funciones anidadas)
-// // 2. La funcion padre debe tener una variable 
-// // 3. La funcion que está dentro debe interactuar con la variable de la funcion padre
-// // que está fuera de ella.	
-// // function miClousure(){
-// //     let mivariableClousure = 10
-// //     return function (){
-// //         mivariableClousure -= 5
-// //         console.log("wwww",mivariableClousure)
-// //         return mivariableClousure
-// //     }
+// Clousures
+// Una clousure es una funcion que tiene acceso a variables de su contexto
+// donde se definio. 
+// Para que exista una clousure se deben cumplir tres condiciones:
+// 1. La funcion debe estar dentro de una funcion (funciones anidadas)
+// 2. La funcion padre debe tener una variable 
+// 3. La funcion que está dentro debe interactuar con la variable de la funcion padre
+// que está fuera de ella.	
+// function miClousure(){
+//     let mivariableClousure = 10
+//     return function (){
+//         mivariableClousure -= 5
+//         console.log("wwww",mivariableClousure)
+//         return mivariableClousure
+//     }
 // // }
 // // let instanciaClousure1 = miClousure() // necesito llamar, invocar la funcion
 // // instanciaClousure1()
