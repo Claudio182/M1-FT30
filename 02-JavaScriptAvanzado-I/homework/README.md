@@ -6,10 +6,11 @@
 Determiná que será impreso en la consola, sin ejecutar el código.
 
 > Investiga cuál es la diferencia entre declarar una variable con `var` y directamente asignarle un valor.
-//En el caso de asignar directamente un valor a una variable se va a producir una reasignación de las primeras. en el caso de no haber sido declarada se va asociar la clave/valor al objeto this
-// En el caso de declarar sin el prefijo var, la variable se almacena como propiedad del objeto, por lo que la hace modificable y eliminable.
+
 
 ```javascript
+//En el caso de asignar directamente un valor a una variable se va a producir una reasignación de las primeras. en el caso de no haber sido declarada se va asociar la clave/valor al objeto this
+// En el caso de declarar sin el prefijo var, la variable se almacena como propiedad del objeto, por lo que la hace modificable y eliminable.
 x = 1;
 var a = 5;
 var b = 10;
@@ -33,7 +34,7 @@ console.log(x); // 1
 
 ```javascript
 console.log(bar); // undefined
-console.log(baz); // Error: baz no esta definido, se detiene la ejecucion del programa
+console.log(baz); // ReferenceError: baz no esta definido, se detiene la ejecucion del programa
 foo(); // // No lega por que salta error antes (Hola!)
 function foo() { console.log('Hola!'); }
 var bar = 1;
@@ -121,11 +122,13 @@ function test() {
 //Undefined ya que si esta declarada la variable a, pero se encuentra mas abajo en el hilo de ejecucion, por lo que no esta definida.
 // 2 ya que es un print en consola del retorno de la funcion foo(), la funcion escala por hoisting y emacenada antes del inicio de la ejecucion en este contexto.
 test();
+console.log(test)
 ```
-
 Y el de este código? :
 
 ```javascript
+
+
 var snack = 'Meow Mix';
 
 function getFood(food) {
@@ -133,11 +136,14 @@ function getFood(food) {
         var snack = 'Friskies';
         return snack;
     }
-    return snack; // undefined
+    return snack;
 }
+
+getFood(false);
+
+
 // Undefined ya que la var (cuyo scope no discrimina por bloque) snack, dentro del contexto de ejecución de la función getFood(), escala por hoisting y es almacenado su nombre y espacio en memoria, pero no declarada.
 // como el argumento pasado a getFood es false, la asignacion de 'Friskies' no sucede por que el hilo de ejecucion no entra al bloque if
-getFood(false);
 ```
 
 

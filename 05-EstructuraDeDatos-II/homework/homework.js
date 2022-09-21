@@ -404,6 +404,9 @@ console.log(tabla1)
 console.log(tabla1.get('tamano'))
 console.log(tabla1.hasKey('color'))
 
+
+
+
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 

@@ -12,104 +12,95 @@
 */
 
 function BinarySearchTree(value) {
-    this.data = value
+    this.value = value
     this.left = null
     this.right = null
 }
 
 BinarySearchTree.prototype.size = function () {
-    if (! this.left && !this.rigth) {
+    if (!this.left && !this.right) {
         return 1
     }
     else if (this.left && this.right) {
-        return 1 + this.left.size() + this.left.size()
+        return 1 + this.left.size() + this.right.size()
     }
-    else if (this.left) {
+    else if (this.left && !this.right) {
         return 1 + this.left.size()
     }
-    else if (this.rigth) {
+    else if (!this.left && this.right) {
         return 1 + this.right.size()
     }
 }
 
-BinarySearchTree.prototype.insert = function(value) {
-    
-    if (value < this.data) {
-        if (!this.left) {
-            this.left = new BinarySearchTree(value)
-        }else{
-            this.left.insert(value)
-        }
-    }else{
+BinarySearchTree.prototype.insert = function (val) {
+    if (val > this.value) {
         if (!this.right) {
-            this.right = new BinarySearchTree(value)
-        }else{
-            this.right.insert(value)
+            this.right = new BinarySearchTree(val)
+        }
+        else {
+            this.right.insert(val)
+        }
+
+    }
+    else {
+        if (!this.left) {
+            this.left = new BinarySearchTree(val)
+        }
+        else {
+            this.left.insert(val)
         }
     }
 }
 
-BinarySearchTree.prototype.contains = function(value) {
-
-    if (value === this.data) {
-        return true
-
-    }else{
-
-        if (value < this.data) {
-            if (!this.left){
-                return false
-            }else{
-                return this.contains(value)
-            }
-        }else{
+BinarySearchTree.prototype.contains = function (val) {
+    if (val === this.value) return true
+    else {
+        if (val > this.value) {
             if (!this.right) {
                 return false
-            }else{
-                return this.contains(value)
             }
-            
+            else {
+                return this.right.contains(val)
+            }
         }
-
-    }
-}
-
-BinarySearchTree.prototype.depthFirstForEach = function(CallBack, order ='in-order'){
-    if (order === 'pre-order') {
-
-        CallBack()
-        
-        if (this.left) {
-            this.left.depthFirstForEach(CallBack, order)
-        }
-        else if (this.right) {
-            this.right.depthFirstForEach(CallBack, order)
-        }
-    }
-    if (order === 'post-order') {
-        if (this.left) {
-            this.left.depthFirstForEach(CallBack, order)
-        }
-        if (this. right){
-            this.right.depthFirstForEach(CallBack, order)
-        }
-
-        CallBack()
-    }
-    if (order === 'in-order') {
-        if (this.left) {
-            this.left.depthFirstForEach(CallBack, order)
-        }
-        CallBack()
-
-        if (this.right) {
-            this.right.depthFirstForEach(CallBack, order)
+        else {
+            if (!this.left) {
+                return false
+            }
+            else {
+                return this.left.contains(val)
+            }
         }
     }
 }
 
-BinarySearchTree.prototype.breadthFirstForEach = function() {}
+BinarySearchTree.prototype.depthFirstForEach = function (cb, order = 'in-order') {
+    switch (order) {
+        case 'pre-order':
+            cb(this.value)
+            this.left && this.left.depthFirstForEach(cb, order)
+            this.right && this.right.depthFirstForEach(cb, order)
+            break
+        case 'in-order':
+            this.left && this.left.depthFirstForEach(cb, order)
+            cb(this.value)
+            this.right && this.right.depthFirstForEach(cb, order)
+            break
+        case 'post-order':
+            this.left && this.left.depthFirstForEach(cb, order)
+            this.right && this.right.depthFirstForEach(cb, order)
+            cb(this.value)
+            break
+    }
+}
 
+BinarySearchTree.prototype.breadthFirstForEach = function (cb, arr = []) {
+    cb(this.value)
+    this.left && arr.push(this.left)
+    this.right && arr.push(this.right)
+    arr.length && arr.shift().breadthFirstForEach(cb, arr)
+    
+}
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 
